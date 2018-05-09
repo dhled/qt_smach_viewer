@@ -15,7 +15,7 @@ catkin_python_setup()
 
 generate_messages(DEPENDENCIES std_msgs)
 
-catkin_package(CATKIN_DEPENDS message_runtime rospy smach std_msgs)
+catkin_package(CATKIN_DEPENDS message_runtime smach std_msgs)
 
 install(DIRECTORY resources 
 	DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
