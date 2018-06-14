@@ -2,22 +2,33 @@
 
 import rospy
 import sys
-
+import signal
 from python_qt_binding.QtGui import *
 from python_qt_binding.QtCore import *
 from python_qt_binding.QtWidgets import *
 
-from qt_smach_viewer.viewer import SmachViewerFrame
+from qt_smach_viewer.viewer import SmachViewerWidget
+
+
+class SmachViewerMainWindow(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self._sv_widget = SmachViewerWidget(self)
+        self.setCentralWidget(self._sv_widget)
+    
+    def closeEvent(self, event):
+        self._sv_widget.OnQuit(event)
+        event.accept()
+        
 
 
 def main():    
     a = QApplication(sys.argv)
-    import signal
-    window = QMainWindow()
-    frame = SmachViewerFrame(window)
-    window.setCentralWidget(frame)
-    window.show()
+    
+    window = SmachViewerMainWindow()
     signal.signal(signal.SIGINT, signal.SIG_DFL)
+    window.show()
+
     sys.exit(a.exec_())
 
 if __name__ == '__main__':

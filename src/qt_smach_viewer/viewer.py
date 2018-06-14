@@ -427,7 +427,7 @@ class ContainerNode():
                     
                     
 
-class SmachViewerFrame(QWidget):
+class SmachViewerWidget(QWidget):
     """
     This class provides a GUI application for viewing SMACH plans.
     """
@@ -516,7 +516,6 @@ class SmachViewerFrame(QWidget):
             self._keep_running = False
             self._update_cond.notify_all()
 
-        self._server_list_thread.join()
         self._update_graph_thread.join()
         
         #event.Skip()
@@ -886,8 +885,7 @@ class SmachViewerFrame(QWidget):
         with open(filename, 'w') as f:
             f.write(self.dotstr)
 
-    def OnExit(self, event):
-        pass
-
     def set_filter(self, filter):
         self.widget.set_filter(filter)
+        
+
