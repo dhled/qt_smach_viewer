@@ -22,9 +22,12 @@
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>rospy</exec_depend>
 
+  <test_depend>rostest</test_depend>
+  <test_depend>python-pytest</test_depend>
+  <test_depend>python-pytest-qt-pip</test_depend>
+
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!--<rosdoc config="rosdoc.yaml"/>-->
   </export>
 </package>
-

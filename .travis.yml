@@ -1,0 +1,12 @@
+sudo: required
+dist: xenial
+# Force travis to use its minimal image with default Python settings
+language: generic
+
+env:
+  global:
+    - ROS_DISTRO="kinetic"
+install:
+  - git clone --depth=1 https://github.com/ros-industrial/industrial_ci.git .ci_config
+script:
+- .ci_config/travis.sh 
