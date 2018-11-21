@@ -27,5 +27,5 @@ catkin_install_python(PROGRAMS scripts/smach_viewer
 
 if (CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
-  add_rostest(test/simple_test.test)
+  #add_rostest(test/simple_test.test)
 endif()
