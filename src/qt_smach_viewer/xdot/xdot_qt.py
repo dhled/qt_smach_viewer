@@ -45,10 +45,6 @@ except:
     from PyQt5.QtGui import *
     from python_qt_binding.QtWidgets import *
 
-#from python_qt_binding import  *
-#from python_qt_binding.QtCore import  *
-#from python_qt_binding.QtGui import  *
-
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-- Drawing Classes --#
 
@@ -94,6 +90,7 @@ class Shape:
         else:
             return self.pen
 
+
 class TextShape(Shape):
     """Used to draw a text shape with a QPainter"""
 
@@ -126,6 +123,7 @@ class TextShape(Shape):
                 self.t)
         pass
 
+
 class EllipseShape(Shape):
     """Used to draw an ellipse shape with a QPainter"""
     def __init__(self, pen, x0, y0, w, h, filled=False):
@@ -149,6 +147,7 @@ class EllipseShape(Shape):
         painter.drawEllipse(self.x0 - self.w, self.y0 - self.h,  self.w * 2,  self.h * 2)
         painter.restore()
 
+
 class PolygonShape(Shape):
     """Used to draw a polygon with QPainter."""
 
@@ -162,7 +161,7 @@ class PolygonShape(Shape):
 
         polygon_points = QPolygonF()
         for x, y in self.points:
-            polygon_points.append (QPointF(x, y))
+            polygon_points.append(QPointF(x, y))
 
         pen = self.select_pen(highlight)
         painter.save()
@@ -176,6 +175,7 @@ class PolygonShape(Shape):
 
         painter.drawPolygon(polygon_points)
         painter.restore()
+
 
 class LineShape(Shape):
     """Used to draw a line with QPainter."""
@@ -195,6 +195,7 @@ class LineShape(Shape):
             painter.drawLine(QPointF(x0, y0),  QPointF(x1, y1))
             x0 = x1
             y0 = y1
+
 
 class BezierShape(Shape):
     """Used to draw a bezier curve with QPainter."""
@@ -232,6 +233,7 @@ class BezierShape(Shape):
         painter.setPen(qpen)
         painter.drawPath(painter_path)
 
+
 class CompoundShape(Shape):
     """Used to draw a set of shapes with QPainter."""
 
@@ -246,6 +248,7 @@ class CompoundShape(Shape):
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-- Metadata Classes --#
 
+
 class Url(object):
     """Represents a graphviz URL."""
 
@@ -255,6 +258,7 @@ class Url(object):
         if highlight is None:
             highlight = set([item])
         self.highlight = highlight
+
 
 class Jump(object):
     """Represents a jump to another node's position on the canvas."""
@@ -270,6 +274,7 @@ class Jump(object):
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-- Graph Representation Classes --#
+
 
 class Element(CompoundShape):
     """Base class for graph nodes and edges."""
@@ -1016,9 +1021,8 @@ class DotParser(Parser):
 
 
 class XDotParser(DotParser):
-
     def __init__(self, xdotcode):
-        lexer = DotLexer(buf = xdotcode)
+        lexer = DotLexer(buf=xdotcode)
         DotParser.__init__(self, lexer)
 
         self.nodes = []
@@ -1197,8 +1201,8 @@ class MoveToAnimation(LinearAnimation):
         self.dot_widget.y = ty * t + sy * (1-t)
         self.dot_widget.update()
 
-class ZoomToAnimation(MoveToAnimation):
 
+class ZoomToAnimation(MoveToAnimation):
     def __init__(self, dot_widget, target_x, target_y):
         MoveToAnimation.__init__(self, dot_widget, target_x, target_y)
         self.source_zoom = dot_widget.zoom_ratio
@@ -1304,6 +1308,7 @@ class ZoomAction(DragAction):
         self.dot_widget.zoom_to_fit_on_resize = False
         self.dot_widget.update()
 
+
 def stop(self):
         self.dot_widget.update()
 
@@ -1342,7 +1347,6 @@ class ZoomAreaAction(DragAction):
         self.dot_widget.update()
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 class DotWidget(QWidget):
-#class DotWidget(gtk.DrawingArea):
     """Qt widget that draws dot graphs."""
 
     filter = 'dot'
@@ -1351,7 +1355,7 @@ class DotWidget(QWidget):
         super(DotWidget,  self).__init__(parent)
         self.graph = Graph()
         self.openfilename = None
-        
+
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 #        self.set_flags(gtk.CAN_FOCUS)
@@ -1378,7 +1382,7 @@ class DotWidget(QWidget):
         self.ctx = None
         self.items_by_url = {}
 
-        self.setMouseTracking (True) # track all mouse events
+        self.setMouseTracking(True) # track all mouse events
 
     ZOOM_INCREMENT = 1.25
     ZOOM_TO_FIT_MARGIN = 12
@@ -1405,15 +1409,9 @@ class DotWidget(QWidget):
         xdotcode, error = p.communicate(dotcode)
         if p.returncode != 0:
             print "UNABLE TO SHELL TO DOT", error
-#            dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
-#                                       message_format=error,
-#                                       buttons=gtk.BUTTONS_OK)
-#            dialog.set_title('Dot Viewer')
-#            dialog.run()
-#            dialog.destroy()
             return False
         try:
-            self.set_xdotcode(xdotcode,center)
+            self.set_xdotcode(xdotcode, center)
 
             # Store references to all the items
             self.items_by_url = {}
@@ -1425,12 +1423,6 @@ class DotWidget(QWidget):
             self.subgraph_shapes = self.graph.subgraph_shapes
 
         except ParseError, ex:
-#            dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
-#                                       message_format=str(ex),
-#                                       buttons=gtk.BUTTONS_OK)
-#            dialog.set_title('Dot Viewer')
-#            dialog.run()
-#            dialog.destroy()
             return False
         else:
             self.openfilename = filename
@@ -1635,9 +1627,9 @@ class DotWidget(QWidget):
         # for gtk's clicked event instead?
         deltax = self.pressx - event.x()
         deltay = self.pressy - event.y()
-        return (time.time() < self.presstime + click_timeout
-                and math.hypot(deltax, deltay) < click_fuzz)
-        
+        return (time.time() < self.presstime + click_timeout and
+                math.hypot(deltax, deltay) < click_fuzz)
+
     def mouseReleaseEvent(self, event):
         self.drag_action.on_button_release(event)
         self.drag_action = NullAction(self)
@@ -1646,7 +1638,7 @@ class DotWidget(QWidget):
             url = self.get_url(x, y)
             if url is not None:
                 for cb in self.select_cbs:
-                    cb(unicode(url.url),event)
+                    cb(unicode(url.url), event)
             else:
                 jump = self.get_jump(x, y)
                 if jump is not None:
@@ -1659,7 +1651,7 @@ class DotWidget(QWidget):
             url = self.get_url(x, y)
             if url is not None:
                 for cb in self.select_cbs:
-                    cb(unicode(url.url),event)
+                    cb(unicode(url.url), event)
             else:
                 jump = self.get_jump(x, y)
                 if jump is not None:
@@ -1693,7 +1685,6 @@ class DotWidget(QWidget):
         self.animation.start()
 
     def window_to_graph(self, x, y):
-#        rect = self.get_allocation()
         rect = self.rect()
         x -= 0.5*rect.width()
         y -= 0.5*rect.height()

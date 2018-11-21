@@ -1,0 +1,4 @@
+<launch>
+  <param name="test_module" value="qt_test"/>
+  <test test-name="simple_test" pkg="qt_smach_viewer" type="pytest_runner.py" />
+</launch>

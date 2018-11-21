@@ -3,7 +3,7 @@
   <name>qt_smach_viewer</name>
   <version>0.0.1</version>
   <description>
-    This package contains a new smach introspection and a linked smach viewer.
+    Qt_smach_viewer provide a new smach introspection and a linked smach viewer.
   </description>
 
   <maintainer email="ludovic.delval@ipa.fraunhofer.de">Ludovic Delval</maintainer>
@@ -15,16 +15,20 @@
 
   <depend>std_msgs</depend>
   <depend>smach</depend>
+  <depend>python_qt_binding</depend>
 
   <build_depend>message_generation</build_depend>
 
+  <build_export_depend>message_runtime</build_export_depend>
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>rospy</exec_depend>
-  <build_export_depend>message_runtime</build_export_depend>
+
+  <test_depend>rostest</test_depend>
+  <test_depend>python-pytest</test_depend>
+  <test_depend>python-pytest-qt-pip</test_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!--<rosdoc config="rosdoc.yaml"/>-->
   </export>
 </package>
-
