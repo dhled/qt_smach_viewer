@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-
-
 from pytestqt import qt_compat
 from pytestqt.qt_compat import qt_api
 
@@ -14,4 +12,5 @@ def test_basics(qtbot, qapp):
     widget = SmachViewerWidget(None)
     qtbot.addWidget(widget)
     widget.setWindowTitle("W1")
+    assert widget.windowTitle() == "W1"
     widget.OnQuit(None)
