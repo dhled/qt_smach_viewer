@@ -2,8 +2,8 @@
 Changelog for package qt_smach_viewer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.2 (2019-02-18)
+------------------
 * disabled test for now
 * added information
 * Fixing xdot install and adding test (`#5 <https://github.com/ipa-led/qt_smach_viewer/issues/5>`_)
