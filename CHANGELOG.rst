@@ -1,0 +1,18 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package qt_smach_viewer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Forthcoming
+-----------
+* disabled test for now
+* added information
+* Fixing xdot install and adding test (`#5 <https://github.com/ipa-led/qt_smach_viewer/issues/5>`_)
+  * cleanned code and better style
+  * fixed install of xdot
+  * catkin_lint -w2 compliance
+  * adding test for qt_smach_viewer
+* fixed quiting window not killing the node
+* removed rospy on build
+* Commit package
+* Initial commit
+* Contributors: Ludovic Delval
