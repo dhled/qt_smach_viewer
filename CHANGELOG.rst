@@ -2,8 +2,8 @@
 Changelog for package qt_smach_viewer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.3 (2019-02-19)
+------------------
 * remove pytest-qt
 * Contributors: Ludovic Delval
 
