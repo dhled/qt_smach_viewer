@@ -14,15 +14,15 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <depend>std_msgs</depend>
-  <depend>smach</depend>
-  <depend>python_qt_binding</depend>
+
 
   <build_depend>message_generation</build_depend>
 
   <build_export_depend>message_runtime</build_export_depend>
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>rospy</exec_depend>
-
+  <exec_depend>smach</exec_depend>
+  <exec_depend>python_qt_binding</exec_depend>
   <test_depend>rostest</test_depend>
   <test_depend>python-pytest</test_depend>
 
