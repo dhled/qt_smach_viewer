@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 import sys
@@ -15,26 +15,26 @@ class SmachViewerMainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self._sv_widget = SmachViewerWidget(self)
         self.setCentralWidget(self._sv_widget)
-    
+
     def closeEvent(self, event):
         self._sv_widget.OnQuit(event)
         event.accept()
-        
 
 
-def main():    
+def main():
     a = QApplication(sys.argv)
-    
+
     window = SmachViewerMainWindow()
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     window.show()
 
     sys.exit(a.exec_())
 
-if __name__ == '__main__':
-    rospy.init_node('smach_viewer',anonymous=False, disable_signals=False,log_level=rospy.INFO)
-    
+
+if __name__ == "__main__":
+    rospy.init_node("smach_viewer", anonymous=False, disable_signals=False, log_level=rospy.INFO)
+
     main()
 
-    
-#End of file
+
+# End of file
